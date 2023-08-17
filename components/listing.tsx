@@ -8,11 +8,7 @@ interface ListingProps {
 export default function Listing({ listingProps }: ListingProps) {
   return (
     <div className="group flex rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-      <a
-        href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={`pages/${listingProps.ID}`}>
         {listingProps.images?.picture_url && (
           <Image
             src={listingProps.images.picture_url}

@@ -1,4 +1,5 @@
 export type Listing = {
+  ID: string;
   listing_url: string | null;
   name: string | null;
   beds: number | null;

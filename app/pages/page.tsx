@@ -15,7 +15,6 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
-
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <div className="z-10 max-w-5xl w-full items-center font-mono text-sm lg:flex mb-5">
@@ -24,7 +23,7 @@ export default async function Home() {
         </p>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mb-32 grid text-center lg:w-full lg:mb-0 lg:grid-cols-6 lg:text-left">
         {data && (
           <>
             {data.map((listing: any) => (
