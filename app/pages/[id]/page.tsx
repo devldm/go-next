@@ -16,12 +16,17 @@ export async function getData(id: string) {
 export default async function Page({ params }: { params: { id: string } }) {
   const listingDetails = await getData(params.id);
   return (
-    <>
+    <div className="w-full p-3 mt-7 flex flex-col items-center md:w-5/6 md:mx-auto">
       {listingDetails ? (
-        <>
-          <h1>{listingDetails.name}</h1>
-          <h1>{listingDetails.address?.street}</h1>
-          <h1>{`${listingDetails?.review_scores?.review_scores_rating}% - ${listingDetails.number_of_reviews} reviews`}</h1>
+        <div className="flex flex-col items-start">
+          <p className="text-3xl mb-3">{listingDetails.name}</p>
+          <div className="flex flex-col md:flex-row md:space-x-5 mb-3">
+            <div className="flex">
+              <p className="min-w-max">{listingDetails.address?.street}</p>
+              <span className="mx-2 block">·</span>
+            </div>
+            <p className="min-w-max">{`${listingDetails?.review_scores?.review_scores_rating}% - ${listingDetails.number_of_reviews} reviews`}</p>
+          </div>
           {listingDetails.images?.picture_url && (
             <Image
               src={listingDetails.images.picture_url}
@@ -32,15 +37,20 @@ export default async function Page({ params }: { params: { id: string } }) {
             />
           )}
           <br />
-          <h1>{`${listingDetails.room_type} hosted by ${listingDetails.host?.host_name}`}</h1>
-          <h1>{`${listingDetails.accommodates} guests | ${listingDetails.bedrooms} bedrooms | ${listingDetails.beds} beds`}</h1>
+          <h1 className="text-2xl">{`${listingDetails.room_type} hosted by ${listingDetails.host?.host_name}`}</h1>
+          <div className="flex">
+            <p>{`${listingDetails.accommodates} guests`}</p>
+            <span className="mx-1">·</span>
+            <p>{`${listingDetails.bedrooms} bedrooms`}</p>
+            <span className="mx-1">·</span>
+            <p>{`${listingDetails.beds} beds`}</p>
+          </div>
           <br />
-
-          <h1>{listingDetails.description}</h1>
-        </>
+          <h1 className="">{listingDetails.description}</h1>
+        </div>
       ) : (
         <h1>no data</h1>
       )}
-    </>
+    </div>
   );
 }
