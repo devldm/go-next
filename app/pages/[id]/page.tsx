@@ -1,14 +1,13 @@
+import { percentToStars } from "@/utils/star";
 import Image from "next/image";
 
 export async function getData(id: string) {
   const res = await fetch(
-    `http://127.0.0.1:3000/listings/${encodeURIComponent(id)}`
+    `http://127.0.0.1:3000/api/listings/${encodeURIComponent(id)}`
   );
   if (!res.ok) {
     console.error("oops");
   }
-
-  console.log(res);
 
   return res.json();
 }
@@ -25,7 +24,9 @@ export default async function Page({ params }: { params: { id: string } }) {
               <p className="min-w-max">{listingDetails.address?.street}</p>
               <span className="mx-2 block">·</span>
             </div>
-            <p className="min-w-max">{`${listingDetails?.review_scores?.review_scores_rating}% - ${listingDetails.number_of_reviews} reviews`}</p>
+            <p className="min-w-max ml-0">{`${percentToStars(
+              listingDetails?.review_scores?.review_scores_rating
+            )} - ${listingDetails.number_of_reviews} reviews`}</p>
           </div>
           {listingDetails.images?.picture_url && (
             <Image
