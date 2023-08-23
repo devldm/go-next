@@ -7,7 +7,7 @@ export default function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex flex-row items-center">
       <StarIcon />
-      <p>{starRating}</p>
+      <p className="ml-1.5">{starRating}</p>
     </div>
   );
 }

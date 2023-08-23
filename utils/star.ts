@@ -8,7 +8,7 @@ export function percentToStars(percent: number): number {
       throw new Error("Percent cannot be greater than 100");
     }
 
-    return Math.floor(percent / 20);
+    return percent / 20;
   }
   return 0;
 }

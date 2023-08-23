@@ -7,6 +7,7 @@ export type Listing = {
   accommodates: number | null;
   images: imageObj | null;
   review_scores: reviewObj | null;
+  price: number | null;
 };
 
 export type imageObj = {
@@ -16,8 +17,13 @@ export type imageObj = {
 export type addressObj = {
   street: string | null;
   country: string | null;
+  location: locationObj | null;
 };
 
 type reviewObj = {
   review_scores_rating: number | null;
+};
+
+export type locationObj = {
+  coordinates: number[] | null;
 };

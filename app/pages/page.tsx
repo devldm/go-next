@@ -1,20 +1,7 @@
-import Listing from "@/components/listing";
+import ListingsGrid from "../components/ListingsGrid";
+import LocationProvider from "../locationProvider";
 
-async function getData() {
-  const res = await fetch("http://127.0.0.1:3000/api/listings/");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
-
-export default async function Home() {
-  const data = await getData();
+export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center md:p-24">
       <div className="z-10 max-w-5xl w-full items-center font-mono text-sm lg:flex mb-5 pb-16 md:pb-0">
@@ -22,16 +9,9 @@ export default async function Home() {
           Listings
         </p>
       </div>
-
-      <div className="mb-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 lg:mb-0 lg:text-left">
-        {data && (
-          <>
-            {data.map((listing: any) => (
-              <Listing key={listing.id} listingProps={listing} />
-            ))}
-          </>
-        )}
-      </div>
+      <LocationProvider>
+        <ListingsGrid />
+      </LocationProvider>
     </main>
   );
 }
