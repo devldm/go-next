@@ -3,6 +3,8 @@ import StarRating from "@/app/components/StarRating";
 import SeparatorDot from "@/app/components/SeparatorDot";
 import ShowMoreWrapper from "@/app/components/ShowMoreWrapper";
 import AmenitiesList from "@/app/components/AmenitiesList";
+import ReviewSection from "@/app/components/ReviewSection";
+import { list } from "postcss";
 
 export async function getData(id: string) {
   const res = await fetch(
@@ -19,7 +21,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const listingDetails = await getData(params.id);
 
   return (
-    <div className="w-full p-3 mt-7 flex flex-col items-center md:w-5/6 md:mx-auto">
+    <div className="w-full p-3 mt-7 flex flex-col items-center md:w-5/6 md:mx-auto lg:max-w-5xl">
       {listingDetails ? (
         <div className="flex flex-col items-start">
           <p className="text-3xl mb-3">{listingDetails.name}</p>
@@ -63,6 +65,12 @@ export default async function Page({ params }: { params: { id: string } }) {
             text={listingDetails.description}
           />
           <AmenitiesList amenities={listingDetails.amenities} />
+          <ReviewSection
+            reviewScoreRating={
+              listingDetails.review_scores!.review_scores_rating!
+            }
+            numberOfReviews={listingDetails.number_of_reviews}
+          />
         </div>
       ) : (
         <h1>no data</h1>
