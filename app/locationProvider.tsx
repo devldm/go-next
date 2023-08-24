@@ -3,6 +3,7 @@
 import { createContext, useState } from "react";
 
 export const LocationContext = createContext({});
+if (typeof global.navigator === "undefined") global.navigator = {} as Navigator;
 
 export default function LocationProvider({
   children,

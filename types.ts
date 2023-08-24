@@ -8,6 +8,7 @@ export type Listing = {
   images: imageObj | null;
   review_scores: reviewObj | null;
   price: number | null;
+  number_of_reviews: number | null;
 };
 
 export type imageObj = {

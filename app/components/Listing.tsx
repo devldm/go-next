@@ -29,11 +29,13 @@ export default function Listing({ listingProps }: ListingProps) {
         )}
         <div className="flex flex-row items-center mt-2.5 justify-between">
           <p className="font-bold text-md">{listingProps.address?.street}</p>
-          {listingProps.review_scores?.review_scores_rating && (
-            <StarRating
-              rating={listingProps.review_scores.review_scores_rating}
-            />
-          )}
+          {listingProps.number_of_reviews !== null &&
+            listingProps.number_of_reviews > 0 && (
+              // TODO: look into cleaning up this type and not using !
+              <StarRating
+                rating={listingProps.review_scores!.review_scores_rating!}
+              />
+            )}
         </div>
         {location && (
           <p className="text-sm text-gray-300">

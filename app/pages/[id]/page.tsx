@@ -1,6 +1,8 @@
-import { percentToStars } from "@/utils/star";
 import Image from "next/image";
-import { useState } from "react";
+import StarRating from "@/app/components/StarRating";
+import SeparatorDot from "@/app/components/SeparatorDot";
+import ShowMoreWrapper from "@/app/components/ShowMoreWrapper";
+import AmenitiesList from "@/app/components/AmenitiesList";
 
 export async function getData(id: string) {
   const res = await fetch(
@@ -21,14 +23,19 @@ export default async function Page({ params }: { params: { id: string } }) {
       {listingDetails ? (
         <div className="flex flex-col items-start">
           <p className="text-3xl mb-3">{listingDetails.name}</p>
-          <div className="flex flex-col md:flex-row md:space-x-5 mb-3">
+          <div className="flex flex-row md:space-x-5 mb-3">
+            {listingDetails.number_of_reviews !== null &&
+              listingDetails.number_of_reviews > 0 && (
+                // TODO: look into cleaning up this type and not using !
+                <StarRating
+                  rating={listingDetails.review_scores!.review_scores_rating!}
+                  numberOfReviews={listingDetails.number_of_reviews}
+                />
+              )}
+            <SeparatorDot />
             <div className="flex">
               <p className="min-w-max">{listingDetails.address?.street}</p>
-              <span className="mx-2 block">·</span>
             </div>
-            <p className="min-w-max ml-0">{`${percentToStars(
-              listingDetails?.review_scores?.review_scores_rating
-            )} - ${listingDetails.number_of_reviews} reviews`}</p>
           </div>
           {listingDetails.images?.picture_url && (
             <Image
@@ -43,13 +50,19 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h1 className="text-2xl">{`${listingDetails.room_type} hosted by ${listingDetails.host?.host_name}`}</h1>
           <div className="flex">
             <p>{`${listingDetails.accommodates} guests`}</p>
-            <span className="mx-1">·</span>
+            <SeparatorDot />
             <p>{`${listingDetails.bedrooms} bedrooms`}</p>
-            <span className="mx-1">·</span>
+            <SeparatorDot />
             <p>{`${listingDetails.beds} beds`}</p>
+            <SeparatorDot />
+            <p>{`${Math.floor(listingDetails.bathrooms)} baths`}</p>
           </div>
           <br />
-          <h1 className="">{listingDetails.description}</h1>
+          <ShowMoreWrapper
+            maxCharacterCount={247}
+            text={listingDetails.description}
+          />
+          <AmenitiesList amenities={listingDetails.amenities} />
         </div>
       ) : (
         <h1>no data</h1>
