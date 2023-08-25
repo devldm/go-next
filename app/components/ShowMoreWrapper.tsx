@@ -11,7 +11,7 @@ export default function ShowMoreWrapper({
   maxCharacterCount: number;
   text: string;
 }) {
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(true);
 
   if (text.length > maxCharacterCount) {
     cutLongContent(maxCharacterCount, text);

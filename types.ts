@@ -9,6 +9,7 @@ export type Listing = {
   review_scores: reviewObj | null;
   price: number | null;
   number_of_reviews: number | null;
+  reviews: reviewsObj[] | null;
 };
 
 export type imageObj = {
@@ -27,4 +28,13 @@ type reviewObj = {
 
 export type locationObj = {
   coordinates: number[] | null;
+};
+
+export type reviewsObj = {
+  ID: string | null;
+  comments: string | null;
+  date: string | null;
+  listing_id: string | null;
+  reviewer_id: string | null;
+  reviewer_name: string | null;
 };

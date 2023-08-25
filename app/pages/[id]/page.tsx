@@ -21,9 +21,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   const listingDetails = await getData(params.id);
 
   return (
-    <div className="w-full p-3 mt-7 flex flex-col items-center md:w-5/6 md:mx-auto lg:max-w-5xl">
+    <div className="w-screen p-6 mt-7 flex flex-col items-center md:w-5/6 md:mx-auto lg:max-w-5xl">
       {listingDetails ? (
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start w-screen">
           <p className="text-3xl mb-3">{listingDetails.name}</p>
           <div className="flex flex-row md:space-x-5 mb-3">
             {listingDetails.number_of_reviews !== null &&
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <Image
               src={listingDetails.images.picture_url}
               alt="image"
-              className="w-min rounded-lg"
+              className="w-min rounded-lg p-0"
               width={700}
               height={700}
             />
@@ -65,12 +65,13 @@ export default async function Page({ params }: { params: { id: string } }) {
             text={listingDetails.description}
           />
           <AmenitiesList amenities={listingDetails.amenities} />
-          <ReviewSection
+          {/* <ReviewSection
             reviewScoreRating={
               listingDetails.review_scores!.review_scores_rating!
             }
             numberOfReviews={listingDetails.number_of_reviews}
-          />
+            reviews={listingDetails.reviews}
+          /> */}
         </div>
       ) : (
         <h1>no data</h1>
