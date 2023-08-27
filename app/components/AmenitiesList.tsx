@@ -16,7 +16,7 @@ export default function AmenitiesList({ amenities }: { amenities: string[] }) {
   }
 
   return (
-    <div className="text-left w-screen py-6">
+    <div className="text-left py-6">
       <p className="text-2xl font-semibold mb-3">What this place offers</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 g-x-6">
         {listOfAmenities.map((amenity) => (

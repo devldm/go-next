@@ -12,7 +12,7 @@ export default function ReviewSection({
   reviews: reviewsObj[];
 }) {
   return (
-    <>
+    <div className="grid">
       <StarRating
         rating={reviewScoreRating}
         numberOfReviews={numberOfReviews}
@@ -25,6 +25,6 @@ export default function ReviewSection({
           <Review review={review} key={review.ID} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
