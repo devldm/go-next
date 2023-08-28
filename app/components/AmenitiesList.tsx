@@ -10,17 +10,17 @@ export default function AmenitiesList({ amenities }: { amenities: string[] }) {
 
   if (amenities.length > 10 && showAll === false) {
     // TODO: only show 6 on mobile - 10 on desktop
-    listOfAmenities = amenities.slice(0, 10);
+    listOfAmenities = amenities.slice(0, 6);
   } else {
     listOfAmenities = amenities;
   }
 
   return (
-    <div className="text-left py-6">
+    <div className="text-left py-6 w-full">
       <p className="text-2xl font-semibold mb-3">What this place offers</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 g-x-6">
         {listOfAmenities.map((amenity) => (
-          <p key={amenity} className="mr-6 text-xl">
+          <p key={amenity} className="mr-6 text-lg">
             {amenity}
           </p>
         ))}

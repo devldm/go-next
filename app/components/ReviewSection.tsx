@@ -1,6 +1,9 @@
+"use client";
+
 import { reviewsObj } from "@/types";
 import StarRating from "./StarRating";
 import Review from "./Review";
+import CustomButton from "./CustomButton";
 
 export default function ReviewSection({
   reviewScoreRating,
@@ -20,11 +23,17 @@ export default function ReviewSection({
         fontSize="text-[22px]"
       />
       <div className="flex overflow-x-scroll flex-nowrap overflow-y-hidden w-full">
-        {/* <div className="grid grid-rows-1 overflow-x-scroll grid-flow-row overflow-y-hidden w-full"> */}
         {reviews.map((review) => (
           <Review review={review} key={review.ID} />
         ))}
       </div>
+      <CustomButton
+        classNames={`border border-gray-300 py-1 px-2 rounded-md text-lg my-1 w-full`}
+        text={`Show all ${reviews.length} reviews`}
+        onClickFunc={() => {
+          console.log("hi");
+        }}
+      />
     </div>
   );
 }

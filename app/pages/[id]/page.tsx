@@ -4,6 +4,9 @@ import SeparatorDot from "@/app/components/SeparatorDot";
 import ShowMoreWrapper from "@/app/components/ShowMoreWrapper";
 import AmenitiesList from "@/app/components/AmenitiesList";
 import ReviewSection from "@/app/components/ReviewSection";
+import Map from "@/app/components/Map";
+import { Listing } from "@/types";
+import HostedByAccommodation from "@/app/components/HostedByAccommodation";
 import { list } from "postcss";
 
 export async function getData(id: string) {
@@ -18,7 +21,7 @@ export async function getData(id: string) {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const listingDetails = await getData(params.id);
+  const listingDetails: Listing = await getData(params.id);
 
   return (
     <div className="p-6 mt-7 flex flex-col items-center md:w-5/6 md:mx-auto lg:max-w-5xl">
@@ -49,28 +52,33 @@ export default async function Page({ params }: { params: { id: string } }) {
             />
           )}
           <br />
-          <h1 className="text-2xl">{`${listingDetails.room_type} hosted by ${listingDetails.host?.host_name}`}</h1>
-          <div className="flex">
-            <p>{`${listingDetails.accommodates} guests`}</p>
-            <SeparatorDot />
-            <p>{`${listingDetails.bedrooms} bedrooms`}</p>
-            <SeparatorDot />
-            <p>{`${listingDetails.beds} beds`}</p>
-            <SeparatorDot />
-            <p>{`${Math.floor(listingDetails.bathrooms)} baths`}</p>
-          </div>
+          <HostedByAccommodation
+            room_type={listingDetails.room_type!}
+            host_name={listingDetails.host?.host_name!}
+            accommodates={listingDetails.accommodates!}
+            bedrooms={listingDetails.bedrooms!}
+            beds={listingDetails.beds!}
+            bathrooms={listingDetails.bathrooms!}
+          />
           <br />
           <ShowMoreWrapper
             maxCharacterCount={247}
-            text={listingDetails.description}
+            text={listingDetails.description!}
           />
-          <AmenitiesList amenities={listingDetails.amenities} />
-          <ReviewSection
-            reviewScoreRating={
-              listingDetails.review_scores!.review_scores_rating!
-            }
-            numberOfReviews={listingDetails.number_of_reviews}
-            reviews={listingDetails.reviews}
+          <AmenitiesList amenities={listingDetails.amenities!} />
+          {listingDetails.number_of_reviews &&
+          listingDetails.number_of_reviews !== 0 ? (
+            <ReviewSection
+              reviewScoreRating={
+                listingDetails.review_scores!.review_scores_rating!
+              }
+              numberOfReviews={listingDetails.number_of_reviews}
+              reviews={listingDetails.reviews!}
+            />
+          ) : null}
+          <Map
+            coordinates={listingDetails.address?.location?.coordinates!}
+            listingDetails={listingDetails}
           />
         </div>
       ) : (
