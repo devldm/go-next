@@ -7,7 +7,6 @@ import ReviewSection from "@/app/components/ReviewSection";
 import Map from "@/app/components/Map";
 import { Listing } from "@/types";
 import HostedByAccommodation from "@/app/components/HostedByAccommodation";
-import { list } from "postcss";
 
 export async function getData(id: string) {
   const res = await fetch(
@@ -77,7 +76,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             />
           ) : null}
           <Map
-            coordinates={listingDetails.address?.location?.coordinates!}
+            coords={listingDetails.address?.location?.coordinates!}
             listingDetails={listingDetails}
           />
         </div>

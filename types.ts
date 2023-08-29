@@ -33,7 +33,7 @@ type reviewObj = {
 };
 
 export type locationObj = {
-  coordinates: number[] | null;
+  coordinates: coordinates | null;
 };
 
 export type reviewsObj = {
@@ -48,3 +48,5 @@ export type reviewsObj = {
 type hostObj = {
   host_name: string | null;
 };
+
+export type coordinates = number[];

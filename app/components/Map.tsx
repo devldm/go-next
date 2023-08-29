@@ -1,14 +1,14 @@
-import { locationObj } from "@/types";
+import { coordinates } from "@/types";
 import ShowMoreWrapper from "./ShowMoreWrapper";
 
 export default function Map({
-  coordinates,
+  coords,
   listingDetails,
 }: {
-  coordinates: locationObj;
+  coords: coordinates;
   listingDetails: any;
 }) {
-  let coordinateStringValue = `${coordinates[0].toString()},${coordinates[1].toString()}`;
+  let coordinateStringValue: string = `${coords[0].toString()},${coords[1].toString()}`;
 
   return (
     <div className="w-full mt-4 mb-20 h-full">
