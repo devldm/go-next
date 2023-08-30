@@ -27,25 +27,27 @@ export default async function Page({ params }: { params: { id: string } }) {
       {listingDetails ? (
         <div className="flex flex-col items-start">
           <p className="text-3xl mb-3">{listingDetails.name}</p>
-          <div className="flex flex-row md:space-x-5 mb-3">
+          <div className="flex flex-row mb-3">
             {listingDetails.number_of_reviews !== null &&
               listingDetails.number_of_reviews > 0 && (
-                // TODO: look into cleaning up this type and not using !
-                <StarRating
-                  rating={listingDetails.review_scores!.review_scores_rating!}
-                  numberOfReviews={listingDetails.number_of_reviews}
-                />
+                // TODO: look into cleaning up this type and not using
+                <>
+                  <StarRating
+                    rating={listingDetails.review_scores!.review_scores_rating!}
+                    numberOfReviews={listingDetails.number_of_reviews}
+                  />
+                  <SeparatorDot />
+                </>
               )}
-            <SeparatorDot />
             <div className="flex">
-              <p className="min-w-max">{listingDetails.address?.street}</p>
+              <p className="min-w-max font-bold">{listingDetails.address?.street}</p>
             </div>
           </div>
           {listingDetails.images?.picture_url && (
             <Image
               src={listingDetails.images.picture_url}
               alt="image"
-              className="w-min rounded-lg p-0"
+              className="w-full rounded-lg p-0"
               width={700}
               height={700}
             />
@@ -66,7 +68,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           />
           <AmenitiesList amenities={listingDetails.amenities!} />
           {listingDetails.number_of_reviews &&
-          listingDetails.number_of_reviews !== 0 ? (
+            listingDetails.number_of_reviews !== 0 ? (
             <ReviewSection
               reviewScoreRating={
                 listingDetails.review_scores!.review_scores_rating!

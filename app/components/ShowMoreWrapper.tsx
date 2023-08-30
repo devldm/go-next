@@ -29,7 +29,7 @@ export default function ShowMoreWrapper({
       <CustomButton
         onClickFunc={() => setShowMore(!showMore)}
         text={showMore ? "Show More" : "Show Less"}
-        classNames={`border border-gray-300 py-1 px-2 rounded-md text-md my-4`}
+        classNames={`border border-gray-300 py-1 px-2 rounded-md text-md my-6`}
       />
     </div>
   );
