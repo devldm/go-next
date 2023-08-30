@@ -26,7 +26,7 @@ export default function AmenitiesList({ amenities }: { amenities: string[] }) {
         ))}
       </div>
       <CustomButton
-        classNames={`border border-gray-300 py-2 px-2 rounded-md text-lg my-4 w-full md:w-1/2`}
+        classNames={`border border-gray-300 py-2 px-2 rounded-md text-lg mb-4 mt-6 w-full md:w-1/2`}
         text={
           !showAll
             ? `Show all ${amenities.length} amenities`
