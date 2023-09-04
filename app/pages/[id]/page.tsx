@@ -8,7 +8,7 @@ import Map from "@/app/components/Map";
 import { Listing } from "@/types";
 import HostedByAccommodation from "@/app/components/HostedByAccommodation";
 
-export async function getData(id: string) {
+async function getData(id: string) {
   //TODO: use the below commented code when fetching data from API locally
   // const res = await fetch(
   //   `http://127.0.0.1:3000/api/listings/${encodeURIComponent(id)}`
