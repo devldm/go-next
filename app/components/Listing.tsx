@@ -40,8 +40,8 @@ export default function Listing({ listingProps }: ListingProps) {
         {location && (
           <p className="text-sm text-gray-300">
             {`${getDistanceFromUser(
-              location,
-              listingProps.address?.location?.coordinates
+              location as GeolocationCoordinates,
+              listingProps.address?.location?.coordinates!
             )} kilometers away`}
           </p>
         )}
