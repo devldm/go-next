@@ -16,7 +16,7 @@ export default function Listing({ listingProps }: ListingProps) {
   const location = useContext(LocationContext);
   return (
     <div className="group flex flex-initial flex-col text-left rounded-lg border border-transparent w-min-content px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-      <a href={`pages/${listingProps.ID}`}>
+      <a href={`/${listingProps.ID}`}>
         {listingProps.images?.picture_url && (
           <div className="w-full h-96 relative">
             <Image
