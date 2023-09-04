@@ -1,7 +1,11 @@
 import Listing from "./Listing";
 
 async function getData() {
-  const res = await fetch("http://127.0.0.1:3000/api/listings/");
+  //TODO: use the below commented code when fetching data from API locally
+  //const res = await fetch("http://127.0.0.1:3000/api/listings/");
+  const res = await fetch("https://go-mongo-airbnb.onrender.com/api/listings/");
+
+  console.log(res);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

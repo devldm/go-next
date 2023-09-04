@@ -9,8 +9,14 @@ import { Listing } from "@/types";
 import HostedByAccommodation from "@/app/components/HostedByAccommodation";
 
 export async function getData(id: string) {
+  //TODO: use the below commented code when fetching data from API locally
+  // const res = await fetch(
+  //   `http://127.0.0.1:3000/api/listings/${encodeURIComponent(id)}`
+  // );
   const res = await fetch(
-    `http://127.0.0.1:3000/api/listings/${encodeURIComponent(id)}`
+    `https://go-mongo-airbnb.onrender.com/api/listings/${encodeURIComponent(
+      id
+    )}`
   );
   if (!res.ok) {
     console.error("oops");
@@ -40,7 +46,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                 </>
               )}
             <div className="flex">
-              <p className="min-w-max font-bold">{listingDetails.address?.street}</p>
+              <p className="min-w-max font-bold">
+                {listingDetails.address?.street}
+              </p>
             </div>
           </div>
           {listingDetails.images?.picture_url && (
@@ -68,7 +76,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           />
           <AmenitiesList amenities={listingDetails.amenities!} />
           {listingDetails.number_of_reviews &&
-            listingDetails.number_of_reviews !== 0 ? (
+          listingDetails.number_of_reviews !== 0 ? (
             <ReviewSection
               reviewScoreRating={
                 listingDetails.review_scores!.review_scores_rating!
