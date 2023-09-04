@@ -13,11 +13,7 @@ export async function getData(id: string) {
   // const res = await fetch(
   //   `http://127.0.0.1:3000/api/listings/${encodeURIComponent(id)}`
   // );
-  const res = await fetch(
-    `https://go-mongo-airbnb.onrender.com/api/listings/${encodeURIComponent(
-      id
-    )}`
-  );
+  const res = await fetch(`${process.env.API_URL}${encodeURIComponent(id)}`);
   if (!res.ok) {
     console.error("oops");
   }
