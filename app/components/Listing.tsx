@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { LocationContext } from "../locationProvider";
 import { getDistanceFromUser } from "@/utils/getDistanceFromUser";
 
-export default function Listing(listingProps: Listing) {
+export default function Listing({ listingProps }: { listingProps: Listing }) {
   const location = useContext(LocationContext);
   return (
     <div className="group flex flex-initial flex-col text-left rounded-lg border border-transparent w-min-content px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
