@@ -31,7 +31,7 @@ export default function ReviewSection({
         classNames={`border border-gray-300 py-1 px-2 rounded-md text-lg my-1 w-full md:w-1/2`}
         text={`Show all ${reviews.length} reviews`}
         onClickFunc={() => {
-          console.log("hi");
+          console.log("TODO: Implement function here to show <dialog>");
         }}
       />
     </div>

@@ -3,16 +3,11 @@
 import { Listing } from "@/types";
 import Image from "next/image";
 import StarRating from "./StarRating";
-
 import { useContext } from "react";
 import { LocationContext } from "../locationProvider";
 import { getDistanceFromUser } from "@/utils/getDistanceFromUser";
 
-interface ListingProps {
-  listingProps: Listing;
-}
-
-export default function Listing({ listingProps }: ListingProps) {
+export default function Listing(listingProps: Listing) {
   const location = useContext(LocationContext);
   return (
     <div className="group flex flex-initial flex-col text-left rounded-lg border border-transparent w-min-content px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
@@ -30,18 +25,19 @@ export default function Listing({ listingProps }: ListingProps) {
         <div className="flex flex-row items-center mt-2.5 justify-between">
           <p className="font-bold text-md">{listingProps.address?.street}</p>
           {listingProps.number_of_reviews !== null &&
-            listingProps.number_of_reviews > 0 && (
-              // TODO: look into cleaning up this type and not using !
+            listingProps.number_of_reviews > 0 &&
+            listingProps.review_scores?.review_scores_rating && (
+              // TODO: look at way to minise the conditional rendering above
               <StarRating
-                rating={listingProps.review_scores!.review_scores_rating!}
+                rating={listingProps.review_scores.review_scores_rating}
               />
             )}
         </div>
-        {location && (
+        {location && listingProps.address?.location?.coordinates && (
           <p className="text-sm text-gray-300">
             {`${getDistanceFromUser(
               location as GeolocationCoordinates,
-              listingProps.address?.location?.coordinates!
+              listingProps.address.location.coordinates
             )} kilometers away`}
           </p>
         )}
