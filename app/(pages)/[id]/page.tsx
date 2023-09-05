@@ -7,19 +7,7 @@ import ReviewSection from "@/app/components/ReviewSection";
 import Map from "@/app/components/Map";
 import { Listing } from "@/types";
 import HostedByAccommodation from "@/app/components/HostedByAccommodation";
-
-async function getData(id: string) {
-  //TODO: use the below commented code when fetching data from API locally
-  // const res = await fetch(
-  //   `http://127.0.0.1:3000/api/listings/${encodeURIComponent(id)}`
-  // );
-  const res = await fetch(`${process.env.API_URL}${encodeURIComponent(id)}`);
-  if (!res.ok) {
-    console.error("oops");
-  }
-
-  return res.json();
-}
+import { getData } from "@/utils/getData";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const listingDetails: Listing = await getData(params.id);
