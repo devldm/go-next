@@ -7,7 +7,7 @@ export async function getData(id?: string) {
 
   //TODO: use the below commented code when fetching data from API locally
 
-  const res = await fetch(id ? `${url}${encodeURIComponent(id)}` : url);
+  const res = await fetch(id ? url + encodeURIComponent(id) : url);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data" + res.status);
